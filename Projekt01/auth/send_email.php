@@ -13,8 +13,8 @@ function send_activation_email($to, $subject, $body) {
         $mail->isSMTP();
         $mail->Host = 'smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = 'b3e73fa98d1bf9';
-        $mail->Password = '49a9d13351508f';
+        $mail->Username = '';
+        $mail->Password = '';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 

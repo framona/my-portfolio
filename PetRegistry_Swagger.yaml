@@ -1,0 +1,540 @@
+openapi: 3.0.0
+info:
+  title: PetRegistry_Full_API
+  version: 1.0.0
+servers:
+- url: https://nak.stud.vts.su.ac.rs/public/api
+paths:
+  /api_auth.php?action=get_user:
+    get:
+      summary: Get User Profile
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                success: true
+                user:
+                  id: 5
+                  email: farkasramona@gmail.com
+                  first_name: Ramona
+                  last_name: Farkas
+                  phone: "06301234567"
+                  role: user
+  /api_auth.php?action=register:
+    post:
+      summary: User and Pet Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_auth_phpactionregister_body"
+        required: true
+      responses:
+        "200":
+          description: Account created successfully
+  /api_auth.php?action=login:
+    post:
+      summary: User Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_auth_phpactionlogin_body"
+        required: true
+      responses:
+        "200":
+          description: Login successful
+  /api_auth.php?action=change_password:
+    post:
+      summary: Change User Password
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_auth_phpactionchange_password_body"
+        required: true
+      responses:
+        "200":
+          description: Password updated
+  /api_auth.php?action=update_profile:
+    put:
+      summary: Update User Profile
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_auth_phpactionupdate_profile_body"
+        required: true
+      responses:
+        "200":
+          description: Profile updated
+  /api_pet.php?action=list_pets:
+    get:
+      summary: Get Pet List
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of pets returned
+  /api_pet.php?action=get_pet_details:
+    get:
+      summary: Get Pet Details
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api_pet.php?action=add_pet:
+    post:
+      summary: Add New Pet
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_pet_phpactionadd_pet_body"
+        required: true
+      responses:
+        "200":
+          description: Pet added
+  /api_pet.php?action=edit_pet:
+    put:
+      summary: Edit Existing Pet Details
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_pet_phpactionedit_pet_body"
+        required: true
+      responses:
+        "200":
+          description: Pet updated
+  /api_pet.php?action=delete_pet:
+    delete:
+      summary: Delete Pet
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Pet deleted
+  /api_pet.php?action=get_reminders:
+    get:
+      summary: Get Pet Reminders
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: List of reminders
+  /api_pet.php?action=generate_qr:
+    get:
+      summary: Generate Pet QR Code
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: QR URL returned
+  /api_pet.php?action=list_vets:
+    get:
+      summary: Get Vet List
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api_messages.php?action=get_messages:
+    get:
+      summary: Get Messages
+      parameters:
+      - name: other_id
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Messages list
+  /api_messages.php?action=send:
+    post:
+      summary: Send Message
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_messages_phpactionsend_body"
+        required: true
+      responses:
+        "200":
+          description: Message sent
+  /api_appointment.php?action=list_owner_appointments:
+    get:
+      summary: Get Appointment List
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api_appointment.php?action=delete:
+    delete:
+      summary: Delete Appointment
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_appointment_phpactiondelete_body"
+        required: true
+      responses:
+        "200":
+          description: Deleted
+  /api_appointment.php?action=cancel_by_vet:
+    delete:
+      summary: Cancel Appointment by Vet
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_appointment_phpactioncancel_by_vet_body"
+        required: true
+      responses:
+        "200":
+          description: Cancelled by vet
+  /api_vet.php?action=get_stats:
+    get:
+      summary: Get Vet Statistics
+      parameters:
+      - name: vet_id
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Statistics returned
+  /api_vet.php?action=add_record:
+    post:
+      summary: Add Medical Record
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_vet_phpactionadd_record_body"
+        required: true
+      responses:
+        "200":
+          description: Record added
+  /api_admin.php?action=get_dashboard_stats:
+    get:
+      summary: Get Admin Dashboard Statistics
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Admin stats
+  /api_admin.php?action=add_vet:
+    post:
+      summary: Register New Veterinarian
+      parameters:
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_admin_phpactionadd_vet_body"
+        required: true
+      responses:
+        "200":
+          description: Vet added
+  /api_admin.php?action=delete_user:
+    delete:
+      summary: Delete User by Admin
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          example: delete_user
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: api_token
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User deleted
+  /api_report_lost.php:
+    post:
+      summary: Report Lost/Found Pet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_report_lost_php_body"
+        required: true
+      responses:
+        "200":
+          description: Report submitted
+  /api_forgot_password.php:
+    post:
+      summary: Forgot Password Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/api_forgot_password_php_body"
+        required: true
+      responses:
+        "200":
+          description: Reset link sent
+components:
+  schemas:
+    api_auth_phpactionregister_body:
+      type: object
+      properties:
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+        confirm_password:
+          type: string
+        pet_name:
+          type: string
+        species:
+          type: string
+        breed:
+          type: string
+        birth_year:
+          type: string
+        vet_id:
+          type: integer
+    api_auth_phpactionlogin_body:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    api_auth_phpactionchange_password_body:
+      type: object
+      properties:
+        current_password:
+          type: string
+        new_password:
+          type: string
+        confirm_password:
+          type: string
+    api_auth_phpactionupdate_profile_body:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+    api_pet_phpactionadd_pet_body:
+      type: object
+      properties:
+        name:
+          type: string
+        species:
+          type: string
+        breed:
+          type: string
+        age:
+          type: string
+        vet_id:
+          type: string
+    api_pet_phpactionedit_pet_body:
+      type: object
+      properties:
+        pet_id:
+          type: string
+        pet_name:
+          type: string
+        species:
+          type: string
+        breed:
+          type: string
+        birth_year:
+          type: string
+    api_messages_phpactionsend_body:
+      type: object
+      properties:
+        receiver_id:
+          type: string
+        message:
+          type: string
+    api_appointment_phpactiondelete_body:
+      type: object
+      properties:
+        appointment_id:
+          type: string
+    api_appointment_phpactioncancel_by_vet_body:
+      type: object
+      properties:
+        appointment_id:
+          type: string
+    api_vet_phpactionadd_record_body:
+      type: object
+      properties:
+        pet_id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        next_control_date:
+          type: string
+    api_admin_phpactionadd_vet_body:
+      type: object
+      properties:
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        password:
+          type: string
+    api_report_lost_php_body:
+      type: object
+      properties:
+        pet_id:
+          type: string
+        action:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+    api_forgot_password_php_body:
+      type: object
+      properties:
+        email:
+          type: string

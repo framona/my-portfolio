@@ -1,0 +1,597 @@
+/* ========= GLOBAL ========= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #F8FFF8;
+    color: #2E3A2E;
+}
+
+a {
+    text-decoration: none;
+}
+.app-modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+}
+
+.app-modal-content {
+    background-color: #fff;
+    margin: 20% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.app-icon-large {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.modal-secondary-text {
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+}
+/* ========= BUTTONS ========= */
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3A8C40;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(76, 175, 80, 0.5);
+}
+
+.btn-ghost {
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 999px;
+    padding: 11px 22px;
+    border: 2px solid #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-left: 12px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.btn-ghost:hover {
+    background-color: #ffffff;
+    color: #2E3A2E;
+    border-color: #ffffff;
+}
+
+/* ====== NAVBAR ====== */
+
+.navbar {
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6BBB77;
+    color: #ffffff;
+    border-bottom: 3px solid #4CAF50;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.brand-title {
+    font-weight: 600;
+    font-size: 26px;
+    margin: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.brand-title::before {
+    content: "🐾 ";
+    font-size: 24px;
+    margin-right: 4px;
+}
+
+.navbar-links ul {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 18px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-links li:hover a {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+/* ====== BURGER MENU ====== */
+
+.toggle-button {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+/* ========= HERO ========= */
+
+.hero {
+    position: relative;
+    padding: 140px 40px 100px;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(0, 0, 0, 0.6), rgba(46, 58, 46, 0.7));
+    z-index: 0;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.hero-text h1 {
+    font-family: "Koulen", sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+}
+
+.hero-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hero-side-card {
+    background-color: rgba(248, 255, 248, 0.92);
+    color: #2E3A2E;
+    border-radius: 18px;
+    padding: 20px 24px;
+    max-width: 360px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+.hero-side-card h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.hero-side-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.95rem;
+}
+
+.hero-side-card li {
+    margin-bottom: 8px;
+}
+
+/* ========= CATEGORIES ========= */
+
+.categories {
+    padding: 70px 40px;
+    text-align: center;
+    font-family: "Koulen", sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 3;
+}
+
+.section-subtitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.98rem;
+    max-width: 600px;
+    margin: 10px auto 30px;
+    color: #4B5E4B;
+}
+
+.category-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 320px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-top: 16px;
+}
+
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.card-body {
+    padding: 18px;
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-body h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.card-body p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #4B5E4B;
+}
+
+/* ========= ABOUT ========= */
+
+.about {
+    padding: 70px 40px;
+    background: #ffffff;
+}
+
+.about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-image img {
+    width: 360px;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.about-text h2 {
+    font-family: "Koulen", sans-serif;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.quote {
+    font-style: italic;
+    color: #4B5E4B;
+    margin-bottom: 16px;
+}
+
+.about-text p {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.about-highlights {
+    margin-top: 18px;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.highlight-item span {
+    font-size: 22px;
+    margin-top: 2px;
+}
+
+.highlight-item h4 {
+    font-size: 15px;
+    margin: 0 0 4px 0;
+}
+
+.highlight-item p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ========= VETERINARIANS ========= */
+
+.vets {
+    padding: 70px 40px 80px;
+    background: #F8FFF8;
+    text-align: center;
+}
+
+.vets h2 {
+    font-family: "Koulen", sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.vet-cards {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.vet-card {
+    width: 300px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+    padding-bottom: 18px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vet-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.25);
+}
+
+.vet-image-wrapper {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.vet-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vet-card h3 {
+    margin-top: 14px;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+}
+
+.vet-role {
+    font-size: 0.9rem;
+    color: #6C7E6C;
+    margin: 4px 0 8px;
+}
+
+.vet-desc {
+    font-size: 0.9rem;
+    padding: 0 16px;
+    color: #4B5E4B;
+}
+
+.vet-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* ========= FOOTER ========= */
+
+footer {
+    background-color: #4CAF50;
+    padding: 1.2rem 0;
+    text-align: center;
+    color: #fff;
+}
+
+.footer-icons .icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin: 0 10px;
+}
+
+.footer-icons a:hover .icon {
+    transform: scale(1.15);
+    filter: brightness(1.4);
+}
+
+@media (max-width: 1250px) {
+.toggle-button {
+    display: flex;
+}
+
+.navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 18px;
+}
+
+.brand-title {
+    font-size: 22px;
+    margin-left: 0;
+    margin-bottom: 8px;
+}
+
+.navbar-links {
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    flex-direction: column;
+}
+
+.navbar-links.active {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.navbar-links ul {
+    flex-direction: column;
+    width: 100%;
+}
+
+.navbar-links li {
+    width: 100%;
+    text-align: left;
+}
+
+.navbar-links li a {
+    padding: 12px 18px;
+    width: 100%;
+    font-size: 1rem;
+}
+}
+
+@media (max-width: 768px) {
+.hero {
+    padding: 120px 20px 80px;
+}
+
+.categories,
+.about,
+.vets {
+    padding: 50px 20px;
+}
+
+.about-inner {
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+}
+
+.vet-card {
+    width: 260px;
+}
+
+.vet-image-wrapper {
+    height: 230px;
+}
+}
+
+@media (max-width: 480px) {
+.hero-text h1 {
+    font-size: 30px;
+}
+
+.hero-actions {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-ghost {
+    margin-left: 0;
+}
+
+.vet-card {
+    width: 100%;
+    max-width: 320px;
+}
+}
